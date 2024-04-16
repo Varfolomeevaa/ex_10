@@ -2,13 +2,26 @@ import random
 
 
 class NavalBattle:
+    '''
+    class of game Naval Battle
+    '''
     playing_field = []
     field = [['~'] * 10 for _ in range(10)]
 
     def __init__(self, sign):
+        '''
+        method for initialization
+        :param sign: sign of player
+        '''
         self.hit = sign
 
     def shot(self, x, y):
+        '''
+        method of shoting a point
+        :param x: coordinate of line
+        :param y: coordinate of column
+        :return: None
+        '''
         if not NavalBattle.playing_field:
             print('игровое поле не заполнено')
         else:
@@ -24,11 +37,19 @@ class NavalBattle:
 
     @staticmethod
     def show():
+        '''
+        method for showing playing field
+        :return: None
+        '''
         for i in range(len(NavalBattle.field)):
             print(*NavalBattle.field[i])
 
     @classmethod
     def new_game(cls):
+        '''
+        method for making random new field
+        :return: None
+        '''
         cls.playing_field = [[-1] * 10 for _ in range(10)]
         count_ships_need = [4, 3, 2, 1]
         count_ships = [0, 0, 0, 0]

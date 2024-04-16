@@ -2,6 +2,9 @@ import re
 
 
 class RomanNumber:
+    '''
+    class of roman numbers
+    '''
     roman_numbers = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
     roman_numbers_rev = {1000: 'M', 500: 'D', 100: 'C', 50: 'L', 10: 'X', 5: 'V', 1: 'I'}
     roman_normal = '^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$'
@@ -9,6 +12,10 @@ class RomanNumber:
     romans_rev = {4: 'IV', 9: 'IX', 40: 'XL', 90: 'XC', 400: 'CD', 900: 'CM'}
 
     def __init__(self, ptr):
+        '''
+        method for initialization
+        :param ptr: Roman number or arabic number
+        '''
         if RomanNumber.is_roman(ptr):
             self.rom_value = ptr
             self.int_value = RomanNumber.decimal_number(self)
@@ -23,6 +30,11 @@ class RomanNumber:
 
     @staticmethod
     def is_roman(value):
+        '''
+        method for defining roman number or not
+        :param value: roman number
+        :return: True of False
+        '''
         if isinstance(value, int) or isinstance(value, float):
             return False
         elif re.match(RomanNumber.roman_normal, value):
@@ -30,6 +42,10 @@ class RomanNumber:
         return False
 
     def decimal_number(self):
+        '''
+        method for converting Roman numerals to Arabic
+        :return: arabic number
+        '''
         dec_number = 0
         new = ''
         number = self.rom_value
@@ -49,9 +65,18 @@ class RomanNumber:
 
     @staticmethod
     def is_int(value):
+        '''
+        method for defining arabic number or not
+        :param value: arabic number
+        :return: True of False
+        '''
         return isinstance(value, int) and 0 < value <= 3999
 
     def roman_number(self):
+        '''
+        method of converting arabic number to roman
+        :return: roman number
+        '''
         num = self.int_value
         if 100 <= num <= 999:
             num_4 = 0
@@ -86,6 +111,11 @@ class RomanNumber:
         return new_num
 
     def __add__(self, other):
+        '''
+        method for adding numbers
+        :param other: second number
+        :return: summary of numbers
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         summ = first + second
@@ -93,6 +123,11 @@ class RomanNumber:
         return summ
 
     def __sub__(self, other):
+        '''
+        method for subtraction
+        :param other: second number
+        :return: subtraction of numbers
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         diff = first - second
@@ -100,6 +135,11 @@ class RomanNumber:
         return diff
 
     def __mul__(self, other):
+        '''
+        method for multiplication
+        :param other: second number
+        :return: multiplication of numbers
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         mult = first * second
@@ -107,6 +147,11 @@ class RomanNumber:
         return mult
 
     def __truediv__(self, other):
+        '''
+        method for simple division
+        :param other: second number
+        :return: simple division of numbers
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         if first % second == 0:
@@ -117,6 +162,11 @@ class RomanNumber:
         return dv
 
     def __floordiv__(self, other):
+        '''
+        method for integer division
+        :param other: second number
+        :return: integer division of numbers
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         dv = first // second
@@ -124,6 +174,11 @@ class RomanNumber:
         return dv
 
     def __mod__(self, other):
+        '''
+        method for defining remainder of the division
+        :param other: second number
+        :return: remainder of the division
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         dv = first % second
@@ -131,6 +186,11 @@ class RomanNumber:
         return dv
 
     def __pow__(self, other):
+        '''
+        method for exponentiation
+        :param other: degree
+        :return: exponentiation
+        '''
         first = RomanNumber.decimal_number(self)
         second = RomanNumber.decimal_number(other)
         power = first ** second
@@ -138,9 +198,17 @@ class RomanNumber:
         return power
 
     def __str__(self):
+        '''
+        method for string representation
+        :return: roman number
+        '''
         if self.rom_value is None:
             return 'None'
         return self.rom_value
 
     def __repr__(self):
+        '''
+        method for interactive presentation
+        :return: roman number
+        '''
         return str(self.rom_value)
